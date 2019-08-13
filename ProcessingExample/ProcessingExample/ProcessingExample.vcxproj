@@ -157,7 +157,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Attractor.h" />
+    <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="MathUtils.h" />
+    <ClInclude Include="Mover.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PVector.h" />
   </ItemGroup>

@@ -1,13 +1,9 @@
 #pragma once
 
-
-
 #include <iostream>
 #include <algorithm>
-#include <ctime>
+#include <random>
 #include "PVector.h"
-
-
 
 constexpr float pI{ 3.14159265358979f };
 
@@ -172,8 +168,11 @@ public:
 	*/
 	static int randomInt(int min, int max)
 	{
-		srand((unsigned)time(0));
-		return static_cast<int>(std::floor(min + rand() * (max - min + 1)));
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<> dis(min, max);
+
+		return static_cast<int>(dis(gen));
 	}
 
 	/**
@@ -186,8 +185,11 @@ public:
 	*/
 	static float randomFloat(float min, float max)
 	{
-		srand((unsigned)time(0));
-		return static_cast<float>(std::floorf(min + rand() * (max - min + 1)));
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<> dis(min, max);
+
+		return static_cast<float>(dis(gen));
 	}
 
 };

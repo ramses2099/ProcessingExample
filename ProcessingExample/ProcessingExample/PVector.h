@@ -26,8 +26,12 @@ public:
 	void set(PVector & v) { this->x = v.x; this->y = v.y; }
 	void set(sf::Vector2f& v) { this->x = v.x; this->y = v.y; }
 	void set(float x, float y) { this->x = x; this->y = y; }
+
+	float const getX()noexcept { return this->x; }
+	float const getY()noexcept { return this->y; }
+
 	//set
-	
+
 	//operation
 	PVector copy()
 	{
@@ -59,20 +63,20 @@ public:
 		this->x /= scale;
 		this->y /= scale;
 	}
-	
-	/*	
+
+	/*
 	 *Multiply a vector by a scalar
 	*/
-	
+
 	void mult(float scale) {
 		this->x *= scale;
 		this->y *= scale;
 	}
-	
+
 	/*
 	 *Calculate the magnitude of the vector
 	 */
-	float mag() 
+	float mag()
 	{
 		return std::sqrt((std::pow(this->x, 2) + std::pow(this->y, 2)));
 	}
@@ -80,13 +84,13 @@ public:
 	/*
 	 *Set the magnitude of the vector
 	*/
-	void setMag(float scale) 
+	void setMag(float scale)
 	{
 		float len = mag();
 		this->x = (this->x / len) * scale;
-		this->y = (this->y / len) * scale;	
+		this->y = (this->y / len) * scale;
 	}
-	
+
 	/*
 	 *Calculate the distance between two points
 	*/
@@ -119,20 +123,20 @@ public:
 	/*
 	 *Normalize the vector to a length of 1
 	*/
-	void normalize() 
+	void normalize()
 	{
 		float len = mag();
 		if (len != 0)
 		{
 			div(len);
-		}	
+		}
 	}
 
 	/*
 	 *Limit the magnitude of the vector
 	*/
-	void limit(float lim) 
-	{	
+	void limit(float lim)
+	{
 		if (mag() > lim)
 		{
 			normalize();
@@ -156,12 +160,12 @@ public:
 	/*
 	 *Calculates the angle of rotation for a vector (2D vectors only).
 	 */
-	float heading() 
+	float heading()
 	{
 		return std::atan2(this->x, this->y);
 	}
 
-	void rotateBy(float scale) 
+	void rotateBy(float scale)
 	{
 		float angle = heading();
 		float len = mag();
@@ -169,7 +173,7 @@ public:
 		this->x = std::cos(scale + angle)* len;
 		this->y = std::sin(scale + angle)* len;
 	}
-	
+
 	void operator=(const PVector & v)
 	{
 		this->x = v.x;
@@ -198,6 +202,30 @@ public:
 	{
 		this->x /= v.x;
 		this->y /= v.y;
+	}
+	
+	static PVector add(PVector v1, PVector v2) 
+	{
+		float dx = v1.getX() + v2.getX();
+		float dy = v1.getY() + v2.getY();
+
+		return PVector(dx, dy);
+	}
+
+	static PVector sub(PVector v1, PVector v2)
+	{
+		float dx = v1.getX() - v2.getX();
+		float dy = v1.getY() - v2.getY();
+
+		return PVector(dx, dy);
+	}
+
+	static PVector div(PVector v1, float scale)
+	{
+		float dx = v1.getX() / scale;
+		float dy = v1.getY() / scale;
+
+		return PVector(dx, dy);
 	}
 
 
