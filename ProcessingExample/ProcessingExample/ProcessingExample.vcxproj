@@ -158,9 +158,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Attractor.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Mover.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticlesSystem.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PVector.h" />
   </ItemGroup>

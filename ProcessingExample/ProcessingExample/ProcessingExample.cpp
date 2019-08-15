@@ -5,102 +5,52 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "PVector.h"
-#include "MathUtils.h"
-#include "GlobalConstants.h"
-
-#include "Mover.h"
-#include "Attractor.h"
-
-//declaracion de variables
-
-
-
-Mover mover;
-Mover mover2(PVector(WIDTH/2,50.f), sf::Color::Blue);
-Mover mover3(PVector(WIDTH / 2 + 50, 70.f), sf::Color::White);
-Attractor attractor;
-
-void setup() {
-	   
-}
-
-void draw(sf::RenderWindow& window)
-{
-	window.clear();
-
-	mover.draw(window);
-	mover2.draw(window);
-	mover3.draw(window);
-	attractor.draw(window);
-		
-	window.display();
-
-}
-
-void update()
-{
-	
-	//mover update
-	mover.update();
-	mover.checkEdges();
-
-	
-	PVector force = attractor.attract(mover2);
-	mover2.applayForce(force);	
-	mover2.update();
-	mover2.checkEdges();
-
-	PVector force2 = attractor.attract(mover3);
-	mover3.applayForce(force2);
-	mover3.update();
-	mover3.checkEdges();
-
-
-}
-
-
-void input(const sf::RenderWindow& window)
-{
-
-	mover.input(window);
-
-	mover2.input(window);
-
-	
-
-
-}
-
+#include "ParticlesSystem.h"
+#include "Entity.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Processing Example");
+	// create the window
+	sf::RenderWindow window(sf::VideoMode(512, 256), "Particles");
 
-	window.setFramerateLimit(60);
-	//init
-	setup();
+	//entity
+	Entity entity("graphics/player001.png",
+		sf::Vector2f(50.f, 50.f),21.f,26.f);
+	
+	// create the particle system
+	//ParticlesSystem particles(1000);
 
+	// create a clock to track the elapsed time
+	sf::Clock clock;
 
+	// run the main loop
 	while (window.isOpen())
 	{
+		// handle events
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
-			input(window);
-
 		}
 
+		// make the particle system emitter follow the mouse
+		sf::Vector2i mouse = sf::Mouse::getPosition(window);
+		//particles.setEmitter(window.mapPixelToCoords(mouse));
 
-		//update
-		update();
+		// update it
+		sf::Time elapsed = clock.restart();
+		//particles.update(elapsed);
 
-		//draw
-		draw(window);
 
+		entity.update(elapsed.asSeconds());
+
+		// draw it
+		window.clear();
+		//window.draw(particles);
+
+		window.draw(entity);
+		window.display();
 	}
 
 	return 0;
