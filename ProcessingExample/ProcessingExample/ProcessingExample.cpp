@@ -5,13 +5,14 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "GlobalConstants.h"
 #include "ParticlesSystem.h"
 #include "Entity.h"
 
 int main()
 {
 	// create the window
-	sf::RenderWindow window(sf::VideoMode(512, 256), "Particles");
+	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Particles");
 
 	//entity
 	Entity entity("graphics/player001.png",

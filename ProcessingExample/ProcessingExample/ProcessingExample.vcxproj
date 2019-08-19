@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Attractor.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityObject.h" />
     <ClInclude Include="GlobalConstants.h" />
     <ClInclude Include="MathUtils.h" />
     <ClInclude Include="Mover.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="PVector.h" />
+    <ClInclude Include="Vector2fUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
